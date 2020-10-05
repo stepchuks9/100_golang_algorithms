@@ -12,16 +12,9 @@ I reverse_find(I f, I l, const decltype(*I())& val) {
     if (f != l) while(f != --l && *l != val);
     return l;
 }
-
-inline 
-std::pair<std::string, std::string>
-Split(const std::string& s) {
-    auto i = reverse_find(s.begin(), s.end(), '/');
-    return { std::string(s.begin(), i+1),
-                std::string(i+1, s.end())};
-}
-
 */
+
+
 
 template <BidirectionalIterator I>
 inline 
@@ -37,6 +30,7 @@ I reverse_find(I f, I l, const decltype(*I())& val) {
             : l;
 }
 
+
 /*
 inline 
 std::pair<std::string, std::string>
@@ -46,6 +40,7 @@ Split(const std::string& s) {
                 std::string(i+1, s.end())};
 }
 */
+
 /*
 inline 
 std::pair<std::string, std::string>

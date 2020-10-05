@@ -2,8 +2,14 @@
 #include <functional>
 #include <string>
 #include <vector>
+#include <iterator>
 
 #define BidirectionalIterator typename
+#define InputIterator typename
+
+template<InputIterator I>
+using ValueType = typename std::iterator_traits<I>::value_type;
+
 
 /*
 template <BidirectionalIterator I>
@@ -15,7 +21,7 @@ I reverse_find(I f, I l, const decltype(*I())& val) {
 */
 
 
-
+/*
 template <BidirectionalIterator I>
 inline 
 I reverse_find_unguarded(I f, I l, const decltype(*I())& val) {
@@ -26,6 +32,21 @@ I reverse_find_unguarded(I f, I l, const decltype(*I())& val) {
 template <BidirectionalIterator I>
 inline 
 I reverse_find(I f, I l, const decltype(*I())& val) {
+    return f != l ? reverse_find_unguarded(f,l,val) 
+            : l;
+}
+*/
+
+template <BidirectionalIterator I>
+inline 
+I reverse_find_unguarded(I f, I l, const ValueType<I>& val) {
+    while (f != --l && *l != val); 
+    return l;
+}
+
+template <BidirectionalIterator I>
+inline 
+I reverse_find(I f, I l, const ValueType<I>& val) {
     return f != l ? reverse_find_unguarded(f,l,val) 
             : l;
 }
